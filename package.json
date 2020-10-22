@@ -7,15 +7,18 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start"
+    "start": "nuxt-ts start",
+    "lint": "eslint --ext .ts,.js,.vue ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@nuxt/typescript-build": "^2.0.3"
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/eslint-config-typescript": "^4.0.0"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
+    "eslint": "^7.11.0",
     "nuxt": "latest"
   }
 }
