@@ -6,6 +6,6 @@
 
 <script lang="ts">
 export default {
-  layout: "default",
-};
+  layout: 'default'
+}
 </script>
