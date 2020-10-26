@@ -3,7 +3,8 @@ export default {
     ['@nuxt/typescript-build', {
       typeCheck: true,
       ignoreNotFoundWarnings: true
-    }]
+    }],
+    '@nuxtjs/vuetify'
   ],
   loaders: {
     ts: {

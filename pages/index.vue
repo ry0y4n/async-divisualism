@@ -2,10 +2,57 @@
   <div>
     <h2>分人主義の落書き</h2>
     <p>1人の人間は，複数の分人のネットワークであり，そこには「本当の自分」という中身はない</p>
+    <input ref="input" :value="title" placeholder="keyup.enter" @keyup.capture="trigger">
 
     <div>
       <p>{{ title }}</p>
-      <input ref="input" :value="title" placeholder="keyup.enter" @keyup.capture="trigger">
+      <v-card color="basil">
+        <v-card-title class="text-center justify-center py-6">
+          <h2 class="font-weight-bold display-3 basil--text">
+            分人主義の落書き
+          </h2>
+        </v-card-title>
+
+        <v-tabs
+          v-model="tab"
+          background-color="transparent"
+          color="basil"
+          grow
+        >
+          <v-tab
+            v-for="item in items"
+            :key="item"
+          >
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="tab">
+          <v-tab-item
+            v-for="(item, i) in items"
+            :key="i"
+          >
+            <v-card
+              color="basil"
+              flat
+            >
+              <p>{{ item }}</p>
+              <v-card-text>{{ texts[i] }}</v-card-text>
+              <input :ref="item" :value="texts[i]" placeholder="keyup.enter" @keyup.capture="trigger">
+              <v-container fluid>
+                <!-- <v-textarea
+                  ref="input-text"
+                  name="input"
+                  filled
+                  label="Label"
+                  auto-grow
+                  value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+                /> -->
+              </v-container>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+      </v-card>
     </div>
 
     <!-- <p>{{ interval.toFixed(2) }}</p> 小数2桁まで表示 -->
@@ -38,6 +85,12 @@ type DataType = {
   accum: number,
   titleDiff: string[],
   intervalDiff: string[],
+  tab: number | null,
+  items: string[],
+  texts: string[],
+  badText: string,
+  goodText: string,
+  weirdText: string
 }
 
 export default Vue.extend({
@@ -53,9 +106,17 @@ export default Vue.extend({
       interval: 0,
       accum: 0,
 
-      // ローカルストレージ
+      // ストレージ
       titleDiff: [],
-      intervalDiff: []
+      intervalDiff: [],
+
+      // vuetify
+      tab: null,
+      items: ['badguy', 'goodguy', 'weirdguy'],
+      texts: ['a', 'b', 'c'],
+      badText: '',
+      goodText: '',
+      weirdText: ''
     }
   },
   watch: {
